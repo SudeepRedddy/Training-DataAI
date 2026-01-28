@@ -1,32 +1,50 @@
-# show customer info total bill value
+def print_header(title):
+    print("\n" + "=" * 40)
+    print(f"{title.center(40)}")
+    print("=" * 40)
 
-def get_name(**kwargs):
+
+def show_customer_info(**kwargs):
+    print_header("CUSTOMER DETAILS")
     for key, value in kwargs.items():
-        if key == "Phone":
-            phone = str(value)[:2] + "XXXXXX" + str(value)[-2:]
-            print(f"{key}: {phone}")
+        if key.lower() == "phone":
+            phone = str(value)
+            masked_phone = phone[:2] + "XXXXXX" + phone[-2:]
+            print(f"{key:<10}: {masked_phone}")
         else:
-            print(f"{key}: {value}")
+            print(f"{key:<10}: {value}")
 
-def trip_details(**kwargs):
+def show_trip_details(**kwargs):
+    print_header("TRIP DETAILS")
     for key, value in kwargs.items():
-        print(f"{key}: {value}")
+        print(f"{key:<15}: {value}")
 
 def calculate_total_bill(**kwargs):
+    print_header("BILL SUMMARY")
     total = 0
     for key, value in kwargs.items():
-        print(f"{key}: Rs {value}")
+        print(f"{key:<15}: Rs {value}")
         total += value
-    print(f"Total Bill Amount: Rs {total}")
 
-print("-------------------------")
-get_name(Name="Sudeep", Phone=9876543210, Email="sudeep@gmail.com")
+    print("-" * 40)
+    print(f"{'TOTAL AMOUNT':<15}: Rs {total}")
+    print("=" * 40)
 
-print("-------------------------")
-trip_details(Trip="Shimla", Days=5, Budget=25000)
 
-print("-------------------------")
-calculate_total_bill(Transport=10000, Food=5000, Accommodation=7000)
-print("-------------------------")
-print("-------------------------")
-calculate_total_bill(Clothes=10000, Food=5000, Taxi=7000)
+name = input("Enter your name          : ")
+phone = input("Enter your phone number  : ")
+email = input("Enter your email         : ")
+
+show_customer_info(Name=name, Phone=phone, Email=email)
+
+trip = input("\nEnter your trip destination : ")
+days = int(input("Enter number of days        : "))
+budget = int(input("Enter your budget           : "))
+
+show_trip_details(Trip=trip, Days=days, Budget=f"Rs {budget}")
+
+calculate_total_bill(
+    Transport=10000,
+    Food=5000,
+    Accommodation=7000
+)
