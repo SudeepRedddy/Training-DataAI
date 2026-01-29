@@ -1,0 +1,15 @@
+========================================
+            UBER RIDE BILL
+             ========================================
+Customer Name  : Sudeep
+Mobile Number  : 9949598719
+Pickup Location: Hyderabad
+Drop Location  : Delhi
+Ride Type      : Hatchback
+Driver Name    : Amit
+Distance       : 12 km
+Rate per km    : Rs. 10
+----------------------------------------
+Total Fare     : Rs. 120
+========================================
+Thank you for choosing UBER!
