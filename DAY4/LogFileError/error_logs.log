@@ -1,0 +1,14 @@
+2026-01-30 09:00:01 INFO Application started
+2026-01-30 09:00:05 INFO Connecting to database
+2026-01-30 09:00:07 ERROR Database connection failed
+2026-01-30 09:00:07 ERROR Database connection failed
+2026-01-30 09:00:07 ERROR Database connection failed
+2026-01-30 09:00:10 INFO Retrying database connection
+2026-01-30 09:00:15 WARNING Connection attempt taking longer than expected
+2026-01-30 09:00:20 ERROR Timeout while connecting to database
+2026-01-30 09:00:25 INFO Database connection established
+2026-01-30 09:05:10 INFO User login successful - user_id=1023
+2026-01-30 09:10:42 ERROR FileNotFoundError: config.yaml not found
+2026-01-30 09:12:00 INFO Loading configuration
+2026-01-30 09:12:05 CRITICAL System crashed due to missing configuration
+2026-01-30 09:15:30 INFO Application shutting down
