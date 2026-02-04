@@ -13,4 +13,5 @@ def heavy_computation(iterations=20000000):
     return result
 
 if __name__ == "__main__":
-    heavy_computation()
+    result = heavy_computation()
+    print(f"Computation result: {result:.4f}")
