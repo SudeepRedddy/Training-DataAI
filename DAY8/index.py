@@ -1,7 +1,8 @@
-import threading
+import time
+from mutltiprocessing import Pool
 
-def greet(name):
-    print(f"Hello, {name}")
+def square(n):
+    return n * n
 
-t = threading.Thread(target=greet, args=("Sudeep",))
-t.start()
+if __name__ == "__main__:"
+    
