@@ -22,7 +22,6 @@ def download_file(filename):
         print(f"[ERROR] Failed {filename}: {e}")
 
 def start_bulk_download():
-    # Create download directory if it doesn't exist
     if not os.path.exists(DOWNLOAD_DIR):
         os.makedirs(DOWNLOAD_DIR)
         
@@ -37,7 +36,6 @@ def start_bulk_download():
     print(f"Found {len(files)} files. Starting parallel download...")
     start_time = time.time()
     
-    # Use ThreadPoolExecutor to download multiple files at once
     with ThreadPoolExecutor(max_workers=5) as executor:
         executor.map(download_file, files)
         

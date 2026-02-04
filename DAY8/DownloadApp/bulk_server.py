@@ -8,8 +8,6 @@ PORT = 8080
 class BulkRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/list':
-            # Simulate a list of files available for download
-            # In a real scenario, this would list actual files in a directory
             files = [f"dataset_{i}.csv" for i in range(1, 21)] # 20 dummy files
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
@@ -18,8 +16,6 @@ class BulkRequestHandler(http.server.SimpleHTTPRequestHandler):
         
         elif self.path.startswith('/download/'):
             filename = self.path.split('/')[-1]
-            # Simulate generating a file on the fly (approx 1MB)
-            # In a real scenario, this would read a file from disk: open(filename, 'rb').read()
             chunk = f"Dummy data content for {filename}\n" * 1000 
             data = chunk.encode('utf-8') * 20 
             
