@@ -17,6 +17,7 @@ def index():
 def add_user():
     username = request.form.get("username")
     email = request.form.get("email")
+    
 
     user = User(username=username, email=email)
     db.session.add(user)

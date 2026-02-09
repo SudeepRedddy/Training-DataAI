@@ -1,10 +1,10 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, abort
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
-
 from extensions import db, login_manager
-from models import User, Product, CartItem
+from models import User, Product
+from flask import session
 
 # ------------------
 # APP CONFIG
@@ -26,6 +26,7 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+
 # ------------------
 # ROUTES
 # ------------------
@@ -36,12 +37,14 @@ def products():
     max_price = request.args.get("price")
 
     query = Product.query
+
     if search:
         query = query.filter(Product.name.contains(search))
     if max_price:
         query = query.filter(Product.price <= max_price)
 
     return render_template("products.html", products=query.all())
+
 
 # ------------------
 # AUTH
@@ -56,8 +59,8 @@ def register():
         db.session.add(user)
         db.session.commit()
         return redirect(url_for("login"))
-
     return render_template("register.html")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -73,10 +76,30 @@ def login():
 
     return render_template("login.html")
 
+
 @app.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for("login"))
+
+
+# ------------------
+# PRODUCT DETAIL PAGE
+# ------------------
+@app.route("/product/<int:product_id>")
+def product_detail(product_id):
+    product = Product.query.get(product_id)
+
+    if not product:
+        return abort(404)
+    
+    related = Product.query.filter(
+    Product.id != product.id,
+    Product.price.between(product.price - 500, product.price + 500)
+    ).limit(3).all()
+
+    return render_template("product_detail.html", product=product, related=related)
+
 
 # ------------------
 # ADD PRODUCT (ADMIN)
@@ -90,7 +113,7 @@ def add_product():
     if request.method == "POST":
         name = request.form["name"]
         price = request.form["price"]
-        category = request.form.get("category", "General")
+        description = request.form["description"]      # <-- IMPORTANT
         image = request.files["image"]
 
         filename = secure_filename(image.filename)
@@ -99,7 +122,7 @@ def add_product():
         product = Product(
             name=name,
             price=price,
-            category=category,
+            description=description,                    # <-- SAVE DESCRIPTION
             image=filename
         )
         db.session.add(product)
@@ -109,52 +132,59 @@ def add_product():
 
     return render_template("add_products.html")
 
-# ------------------
-# FEATURES: CART, CHECKOUT, DELETE, RELATED
-# ------------------
-@app.route("/product/<int:product_id>")
-def product_details(product_id):
-    product = Product.query.get_or_404(product_id)
-    # Related products: same category, excluding current product
-    related = Product.query.filter_by(category=product.category).filter(Product.id != product.id).limit(4).all()
-    return render_template("product_details.html", product=product, related_products=related)
-
 @app.route("/add-to-cart/<int:product_id>")
 @login_required
 def add_to_cart(product_id):
-    cart_item = CartItem.query.filter_by(user_id=current_user.id, product_id=product_id).first()
-    if cart_item:
-        cart_item.quantity += 1
-    else:
-        cart_item = CartItem(user_id=current_user.id, product_id=product_id)
-        db.session.add(cart_item)
-    db.session.commit()
-    return redirect(url_for('cart'))
+    product = Product.query.get(product_id)
+    if not product:
+        return abort(404)
+
+    cart = session.get("cart", [])
+    cart.append(product_id)
+    session["cart"] = cart
+
+    return redirect(url_for("products"))
 
 @app.route("/cart")
 @login_required
 def cart():
-    cart_items = current_user.cart_items
-    total = sum(item.product.price * item.quantity for item in cart_items)
-    return render_template("cart.html", cart_items=cart_items, total=total)
+    cart_ids = session.get("cart", [])
+    products = Product.query.filter(Product.id.in_(cart_ids)).all()
+    total = sum([p.price for p in products])
+    return render_template("cart.html", products=products, total=total)
 
 @app.route("/checkout")
 @login_required
 def checkout():
-    # Clear user cart
-    CartItem.query.filter_by(user_id=current_user.id).delete()
-    db.session.commit()
-    return render_template("checkout_success.html")
+    cart_ids = session.get("cart", [])
+    products = Product.query.filter(Product.id.in_(cart_ids)).all()
+    total = sum([p.price for p in products])
+
+    # Clear cart after checkout
+    session["cart"] = []
+
+    return render_template("checkout.html", products=products, total=total)
+
+    # clear cart after checkout
+    session["cart"] = []
+
+    return render_template("checkout.html", products=products, total=total)
+
 
 @app.route("/delete-product/<int:product_id>")
 @login_required
 def delete_product(product_id):
     if not current_user.is_admin:
         return "Unauthorized", 403
-    product = Product.query.get_or_404(product_id)
+
+    product = Product.query.get(product_id)
+    if not product:
+        return abort(404)
+
     db.session.delete(product)
     db.session.commit()
-    return redirect(url_for('products'))
+
+    return redirect(url_for("products"))
 
 # ------------------
 # MAIN

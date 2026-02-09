@@ -11,15 +11,19 @@
 <div class="row">
 {% for p in products %}
   <div class="col-md-4 mb-3">
-    <div class="card">
-      <img src="{{ url_for('static', filename='uploads/' + p.image) }}"
-           style="height:200px; object-fit:cover;">
-      <div class="card-body">
-        <h5>{{ p.name }}</h5>
-        <p>₹{{ p.price }}</p>
-        <a href="/product/{{ p.id }}" class="btn btn-primary btn-sm">View Details</a>
+
+    <a href="{{ url_for('product_detail', product_id=p.id) }}" 
+       style="text-decoration:none; color:inherit;">
+      <div class="card">
+        <img src="{{ url_for('static', filename='uploads/' + p.image) }}"
+             style="height:200px; object-fit:cover;">
+        <div class="card-body">
+          <h5>{{ p.name }}</h5>
+          <p>₹{{ p.price }}</p>
+        </div>
       </div>
-    </div>
+    </a>
+
   </div>
 {% endfor %}
 </div>
