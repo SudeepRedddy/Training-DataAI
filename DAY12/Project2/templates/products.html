@@ -1,34 +1,83 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Products</h2>
 
-<form method="GET" class="row mb-3">
-  <input name="search" class="col form-control" placeholder="Search">
-  <input name="price" class="col form-control" placeholder="Max price">
-  <button class="col btn btn-info">Filter</button>
-</form>
+<div class="container">
 
-<div class="row">
-{% for p in products %}
-  <div class="col-md-4 mb-3">
+  <!-- Page Title -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold mb-0">🛍️ Products</h2>
 
-    <a href="{{ url_for('product_detail', product_id=p.id) }}" 
-       style="text-decoration:none; color:inherit;">
-      <div class="card">
-        <img src="{{ url_for('static', filename='uploads/' + p.image) }}"
-             style="height:200px; object-fit:cover;">
-        <div class="card-body">
-          <h5>{{ p.name }}</h5>
-          <p>₹{{ p.price }}</p>
-        </div>
-      </div>
+    {% if current_user.is_admin %}
+    <a href="/add-product" class="btn btn-warning">
+      ➕ Add Product
     </a>
+    {% endif %}
+  </div>
+
+  <!-- Filter Bar -->
+  <form method="GET" class="card shadow-sm border-0 mb-4"
+        style="border-radius: 14px;">
+    <div class="card-body row g-2 align-items-end">
+
+      <div class="col-md-5">
+        <label class="form-label fw-semibold">Search</label>
+        <input
+          name="search"
+          class="form-control"
+          placeholder="Search products..."
+        >
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label fw-semibold">Max Price</label>
+        <input
+          name="price"
+          class="form-control"
+          placeholder="Enter max price"
+        >
+      </div>
+
+      <div class="col-md-3 d-grid">
+        <button class="btn btn-info">
+          Filter
+        </button>
+      </div>
+
+    </div>
+  </form>
+
+  <!-- Products Grid -->
+  <div class="row g-4">
+
+    {% for p in products %}
+    <div class="col-lg-4 col-md-6">
+
+      <a href="{{ url_for('product_detail', product_id=p.id) }}"
+         class="text-decoration-none text-dark">
+
+        <div class="card h-100 shadow-sm border-0"
+             style="border-radius: 16px; transition: transform 0.2s;">
+          
+          <img
+            src="{{ url_for('static', filename='uploads/' + p.image) }}"
+            class="card-img-top"
+            style="height: 220px; object-fit: cover;
+                   border-top-left-radius: 16px;
+                   border-top-right-radius: 16px;">
+
+          <div class="card-body">
+            <h5 class="fw-semibold mb-1">{{ p.name }}</h5>
+            <p class="fw-bold text-success mb-0">₹{{ p.price }}</p>
+          </div>
+
+        </div>
+      </a>
+
+    </div>
+    {% endfor %}
 
   </div>
-{% endfor %}
+
 </div>
 
-{% if current_user.is_admin %}
-<a href="/add-product" class="btn btn-warning mt-3">Add Product</a>
-{% endif %}
 {% endblock %}

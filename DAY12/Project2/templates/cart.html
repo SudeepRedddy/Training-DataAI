@@ -1,24 +1,64 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Your Cart</h2>
+<div class="container">
 
-{% if products %}
-    {% for p in products %}
-        <div class="card mb-2">
-            <div class="card-body">
-                <h5>{{ p.name }}</h5>
-                <p>₹{{ p.price }}</p>
+  <h2 class="fw-bold mb-4">
+    🛒 Your Cart
+  </h2>
+
+  {% if products %}
+
+    <div class="row g-3 mb-4">
+      {% for p in products %}
+      <div class="col-12">
+        <div class="card shadow-sm border-0" style="border-radius: 14px;">
+          <div class="card-body d-flex justify-content-between align-items-center">
+
+            <div>
+              <h5 class="mb-1 fw-semibold">{{ p.name }}</h5>
+              <small class="text-muted">Product price</small>
             </div>
+
+            <div class="text-end">
+              <span class="fw-bold fs-5 text-success">
+                ₹{{ p.price }}
+              </span>
+            </div>
+
+          </div>
         </div>
-    {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
 
-    <h3>Total: ₹{{ total }}</h3>
+    <!-- Cart Summary -->
+    <div class="card shadow-lg border-0 mb-3" style="border-radius: 16px;">
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <h4 class="fw-bold mb-0">Total</h4>
+        <h4 class="fw-bold text-success mb-0">₹{{ total }}</h4>
+      </div>
+    </div>
 
-    <a href="{{ url_for('checkout') }}" class="btn btn-success">Proceed to Checkout</a>
+    <div class="d-grid">
+      <a href="{{ url_for('checkout') }}" class="btn btn-success btn-lg">
+        Proceed to Checkout
+      </a>
+    </div>
 
-{% else %}
-    <p>Your cart is empty.</p>
-{% endif %}
+  {% else %}
+
+    <!-- Empty Cart -->
+    <div class="text-center py-5">
+      <h4 class="text-muted mb-2">🛒 Your cart is empty</h4>
+      <p class="text-muted">Looks like you haven’t added anything yet.</p>
+      <a href="{{ url_for('products') }}" class="btn btn-outline-primary mt-2">
+        Browse Products
+      </a>
+    </div>
+
+  {% endif %}
+
+</div>
 
 {% endblock %}

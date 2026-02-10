@@ -1,19 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Order Summary</h2>
+<div class="d-flex justify-content-center">
+  <div class="card shadow-lg border-0 text-center" 
+       style="max-width: 600px; width: 100%; border-radius: 18px;">
 
-{% for p in products %}
-    <p>{{ p.name }} - ₹{{ p.price }}</p>
-{% endfor %}
+    <div class="card-body p-4">
 
-<h3>Total Paid: ₹{{ total }}</h3>
+      <h2 class="fw-bold mb-3">
+        ✅ Order Summary
+      </h2>
 
-<p class="mt-3 text-success"><strong>Checkout Complete! 🎉</strong></p>
+      <p class="text-success fw-semibold mb-4">
+        Checkout Complete! 🎉 Thank you for your purchase.
+      </p>
 
-<!-- Continue Shopping Button -->
-<a href="{{ url_for('products') }}" class="btn btn-primary mt-3">
-    Continue Shopping
-</a>
+      <!-- Products List -->
+      <div class="text-start mb-4">
+        {% for p in products %}
+        <div class="d-flex justify-content-between border-bottom py-2">
+          <span>{{ p.name }}</span>
+          <span class="fw-semibold">₹{{ p.price }}</span>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Total -->
+      <div class="bg-light rounded p-3 mb-4 d-flex justify-content-between">
+        <h5 class="mb-0 fw-bold">Total Paid</h5>
+        <h5 class="mb-0 fw-bold text-success">₹{{ total }}</h5>
+      </div>
+
+      <!-- CTA -->
+      <div class="d-grid">
+        <a href="{{ url_for('products') }}" class="btn btn-primary btn-lg">
+          Continue Shopping
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 {% endblock %}
