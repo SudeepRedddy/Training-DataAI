@@ -1,0 +1,10 @@
+create 3 crud Operations
+similar like make my trip
+1. Bus
+2. Flight
+3. Hotel
+
+
+check request in postman in 3 collections,bus,flight and hotel
+with 4 request get,post,put and delete it shoukd respond there
+data in postman
