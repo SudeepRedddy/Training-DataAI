@@ -1,0 +1,22 @@
+pip install pytest
+
+pytest to run pytest
+run testing file in thi eg: test_app.py to check functions in pytest use cases
+
+
+
+RESTful API wihh e-commerce Flask
+filter
+checkout process
+payment process
+add to cart
+remove to cart
+authenticatio
+authorixation
+build a complete rest API system
+
+flask web app
+
+requirements
+1. create rest endpoints
+    GET/ items

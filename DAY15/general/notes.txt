@@ -1,0 +1,5 @@
+status code
+response data
+headers
+authentication and permissions
+error handling
