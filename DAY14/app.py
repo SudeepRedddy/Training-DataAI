@@ -16,10 +16,13 @@ class BaseModel:
 class Bus(db.Model, BaseModel):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
-    
+    pickup = db.Column(db.Integer, primary_key=False)
+    dropoff = db.Column(db.Integer, primary_key=False)
+    fare = db.Column(db.Integer, primary_key=False)
+    available_seats = db.Column(db.Integer, primary_key=False)
 
     def __repr__(self):
-        return f'<Bus {self.id} - {self.name}>'
+        return f'<Bus {self.id} - {self.name} - {self.pickup} - {self.dropoff} - {self.fare} - {self.available_seats}>'
 
 
 with app.app_context():
