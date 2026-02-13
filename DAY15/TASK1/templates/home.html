@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="text-center">
-  <h1 class="display-4">Welcome to E-Commerce Store</h1>
-  <p class="lead">Complete Flask REST API + Frontend Project</p>
-  <a href="/products" class="btn btn-primary btn-lg mt-3">Shop Now</a>
+<div class="text-center py-5">
+  <h1 class="display-3 fw-bold mb-4">Welcome to E-Shop</h1>
+  <p class="lead text-muted mb-4">
+    Discover amazing products at unbeatable prices.
+  </p>
+
+  <a href="/products" class="btn btn-primary btn-lg px-5 shadow">
+    <i class="bi bi-bag-fill"></i> Shop Now
+  </a>
 </div>
 
 {% endblock %}

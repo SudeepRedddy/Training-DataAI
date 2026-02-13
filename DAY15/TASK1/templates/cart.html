@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Your Cart</h2>
+<h2 class="mb-4 fw-bold text-center">Your Cart</h2>
 
 {% if items %}
-<table class="table table-bordered">
-  <thead class="table-dark">
+<div class="card shadow p-4">
+<table class="table align-middle">
+  <thead class="table-primary">
     <tr>
       <th>Product</th>
       <th>Quantity</th>
@@ -18,10 +19,11 @@
     <tr>
       <td>{{ item.name }}</td>
       <td>{{ quantity }}</td>
-      <td>₹ {{ item.price * quantity }}</td>
+      <td class="fw-bold text-success">₹ {{ item.price * quantity }}</td>
       <td>
-        <a href="/remove_from_cart/{{item.id}}" class="btn btn-danger btn-sm">
-          Remove
+        <a href="/remove_from_cart/{{item.id}}" 
+           class="btn btn-outline-danger btn-sm">
+          <i class="bi bi-trash"></i> Remove
         </a>
       </td>
     </tr>
@@ -29,12 +31,18 @@
   </tbody>
 </table>
 
-<h4>Total: ₹ {{ total }}</h4>
-
-<a href="/checkout" class="btn btn-success">Proceed to Checkout</a>
+<div class="d-flex justify-content-between mt-3">
+  <h4>Total: <span class="text-success">₹ {{ total }}</span></h4>
+  <a href="/checkout" class="btn btn-success">
+    <i class="bi bi-credit-card"></i> Proceed to Checkout
+  </a>
+</div>
+</div>
 
 {% else %}
-  <div class="alert alert-warning">Your cart is empty.</div>
+  <div class="alert alert-warning text-center shadow">
+    <i class="bi bi-cart-x"></i> Your cart is empty.
+  </div>
 {% endif %}
 
 {% endblock %}

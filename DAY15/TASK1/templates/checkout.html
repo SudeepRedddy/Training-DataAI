@@ -1,25 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Checkout</h2>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow p-4">
+      <h3 class="mb-4 text-center fw-bold">Secure Checkout</h3>
 
-<form method="POST" action="/payment" class="col-md-6">
-  <div class="mb-3">
-    <label>Card Number</label>
-    <input class="form-control" required>
+      <form method="POST" action="/payment">
+        <div class="mb-3">
+          <label class="form-label">Card Number</label>
+          <input class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Expiry Date</label>
+            <input class="form-control" placeholder="MM/YY" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">CVV</label>
+            <input class="form-control" required>
+          </div>
+        </div>
+
+        <button class="btn btn-primary w-100 mt-3">
+          <i class="bi bi-lock-fill"></i> Pay Now
+        </button>
+      </form>
+    </div>
   </div>
-
-  <div class="mb-3">
-    <label>Expiry Date</label>
-    <input class="form-control" placeholder="MM/YY" required>
-  </div>
-
-  <div class="mb-3">
-    <label>CVV</label>
-    <input class="form-control" required>
-  </div>
-
-  <button class="btn btn-primary w-100">Pay Now</button>
-</form>
+</div>
 
 {% endblock %}

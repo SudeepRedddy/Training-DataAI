@@ -1,0 +1,10 @@
+[
+    {
+        "type": "Electronics",
+        "product_id": "E1",
+        "name": "Iphone",
+        "price": 75000.0,
+        "stock": 23,
+        "warranty_years": 2
+    }
+]
