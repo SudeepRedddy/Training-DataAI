@@ -1,0 +1,199 @@
+Assignment: eCommerce Web Application using Flask, Python, and MongoDB
+Objective
+Build a basic eCommerce web application backend using:
+* Python
+* Flask framework
+* MongoDB database
+* PyMongo library
+* REST API principles
+This project will help you learn:
+* MongoDB CRUD operations
+* Flask routing
+* Database design with NoSQL
+* User authentication basics
+* RESTful API development
+
+Project Title
+FlaskCart – Mini eCommerce System
+
+Functional Requirements
+Module 1: User Management
+Features to implement
+* User registration
+* User login
+* User logout
+* View user profile
+MongoDB Collection: users
+Fields:
+_id
+name
+email
+password
+phone
+address
+created_at
+Tasks
+* Create POST API for user registration
+* Create POST API for login
+* Validate email uniqueness
+* Store password securely (hash recommended)
+* Fetch user profile from MongoDB
+
+Module 2: Product Management
+MongoDB Collection: products
+Fields:
+_id
+name
+description
+price
+category
+stock
+image_url
+created_at
+Features to implement
+Admin should be able to:
+* Add product
+* View all products
+* View single product
+* Update product
+* Delete product
+Required APIs
+POST   /products
+GET    /products
+GET    /products/<id>
+PUT    /products/<id>
+DELETE /products/<id>
+
+Module 3: Shopping Cart
+MongoDB Collection: cart
+Fields:
+_id
+user_id
+product_id
+quantity
+added_at
+Features
+User can:
+* Add product to cart
+* View cart
+* Update quantity
+* Remove item from cart
+
+Module 4: Orders
+MongoDB Collection: orders
+Fields:
+_id
+user_id
+products [
+   product_id
+   quantity
+   price
+]
+total_price
+status
+created_at
+Features
+User can:
+* Place order
+* View order history
+* View single order
+
+Module 5: Categories (Optional but recommended)
+Collection: categories
+Fields:
+_id
+name
+description
+
+Technical Requirements
+Must use:
+* Flask
+* MongoDB
+* PyMongo
+* JSON responses
+* Proper API structure
+
+Project Structure Requirement
+Create structure like:
+flaskcart/
+│
+├── app.py
+├── config.py
+├── requirements.txt
+│
+├── models/
+│   ├── user_model.py
+│   ├── product_model.py
+│   ├── cart_model.py
+│   └── order_model.py
+│
+├── routes/
+│   ├── user_routes.py
+│   ├── product_routes.py
+│   ├── cart_routes.py
+│   └── order_routes.py
+│
+└── utils/
+    ├── db.py
+    └── helpers.py
+
+Required MongoDB Operations to Practice
+You must use:
+* insert_one()
+* find()
+* find_one()
+* update_one()
+* delete_one()
+* delete_many()
+* aggregate() (optional advanced)
+
+Required Flask Concepts
+You must use:
+* Flask app initialization
+* Blueprints (recommended)
+* request
+* jsonify
+* route decorators
+* HTTP methods (GET, POST, PUT, DELETE)
+
+Validation Requirements
+You must validate:
+* Required fields
+* Email format
+* Password length
+* Product price > 0
+* Stock ≥ 0
+
+Bonus Features (Optional)
+Add if you want advanced practice:
+* JWT authentication
+* Admin role
+* Product search
+* Pagination
+* Image upload
+* Order status update
+
+Expected Output
+Working REST API supporting:
+* User registration/login
+* Product CRUD
+* Cart management
+* Order placement
+* MongoDB integration
+
+Example API List (for reference only)
+POST   /register
+POST   /login
+
+GET    /products
+POST   /products
+PUT    /products/<id>
+DELETE /products/<id>
+
+POST   /cart/add
+GET    /cart/<user_id>
+PUT    /cart/update
+DELETE /cart/remove
+
+POST   /order
+GET    /orders/<user_id>
