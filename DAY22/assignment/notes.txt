@@ -1,0 +1,43 @@
+• This assignment covers all major topics in NumPy, Pandas, and Matplotlib.
+• Use the Netflix dataset from Kaggle: https://www.kaggle.com/datasets/shivamb/netflix-shows
+• Do not use any ready-made solutions.
+• Write code and explain your answers wherever required.
+• Save plots and include screenshots in your report.
+1. Create a NumPy array with 10 elements and print its shape, size, and data type.
+2. Perform addition, subtraction, multiplication, and division on a NumPy array.
+3. Create a 2D NumPy array and access specific elements using indexing.
+4. Slice a NumPy array and display selected elements.
+5. Reshape a NumPy array into a different shape.
+6. Demonstrate broadcasting with NumPy arrays.
+7. Load the Netflix dataset using Pandas.
+8. Display the first 10 rows and last 10 rows.
+9. Display dataset information and column names.
+10. Check and handle missing values.
+11. Select specific columns from the dataset.
+12. Filter rows based on conditions.
+13. Add a new column based on existing data.
+14. Remove a column from the dataset.
+15. Rename a column.
+16. Sort data based on release year.
+17. Use indexing and slicing to extract specific rows.
+18. Use GroupBy to analyze the dataset.
+19. Create a Pivot Table.
+20. Use shift() function and explain the result.
+21. Use rank() function and analyze ranking.
+22. Use rolling() function and analyze moving average.
+23. Create a bar chart using Matplotlib.
+24. Create a pie chart.
+25. Create a histogram.
+26. Create subplots with multiple charts.
+27. Add title, labels, and legend to plots.
+28. Save plots as PNG files.
+29. Find how many Movies and TV Shows are in the dataset.
+30. Find the most common release year.
+31. Analyze trends using charts.
+32. Identify patterns in the dataset.
+33. Write conclusions based on your analysis.
+34. Use NumPy and Pandas together for analysis.
+35. Perform statistical analysis.
+36. Create multiple visualizations.
+37. Save analysis results to a new CSV file.
+38. Create a complete analysis report.
