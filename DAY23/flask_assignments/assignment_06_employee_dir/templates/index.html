@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><title>Employee Directory</title></head>
+<body>
+<h1>Employee Directory</h1>
+<form method="GET">
+  <select name="dept">
+    <option value="">-- All Departments --</option>
+    {% for d in departments %}
+    <option value="{{ d }}" {% if d == selected %}selected{% endif %}>{{ d }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Filter</button>
+</form>
+<table border="1" cellpadding="8" style="margin-top:15px">
+<tr><th>Name</th><th>Department</th><th>Position</th><th>Salary</th></tr>
+{% for e in employees %}
+<tr>
+  <td>{{ e.name }}</td>
+  <td>{{ e.department }}</td>
+  <td>{{ e.position }}</td>
+  <td>{{ e.salary }}</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

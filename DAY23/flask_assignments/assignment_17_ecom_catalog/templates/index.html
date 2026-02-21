@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><title>Product Catalog</title></head>
+<body>
+<h1>Product Catalog</h1>
+<form method="GET">
+  <label>Filter by Category:</label>
+  <select name="category">
+    <option value="">All</option>
+    {% for cat in categories %}
+    <option value="{{ cat }}" {% if cat == selected %}selected{% endif %}>{{ cat }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Filter</button>
+</form>
+<div style="display:flex; flex-wrap:wrap; gap:15px; margin-top:20px">
+{% for p in products %}
+<div style="border:1px solid #ddd; padding:15px; width:200px">
+  <h3>{{ p.name }}</h3>
+  <p>Rs. {{ p.price }}</p>
+  <p><small>{{ p.category }}</small></p>
+  <a href="/product/{{ p._id }}">View Details</a>
+</div>
+{% endfor %}
+</div>
+</body>
+</html>

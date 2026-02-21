@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Students</title></head>
+<body>
+<h1>Student List</h1>
+<ul>
+{% for s in students %}
+<li>
+  <a href="/student/{{ s._id }}">{{ s.name }}</a> - {{ s.course }}
+</li>
+{% endfor %}
+</ul>
+</body>
+</html>

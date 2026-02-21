@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Blog</title></head>
+<body>
+<h1>Blog Posts</h1>
+{% for p in posts %}
+<div style="border-bottom:1px solid #ddd; padding:10px">
+  <h2><a href="/post/{{ p._id }}">{{ p.title }}</a></h2>
+  <small>{{ p.comments|length }} comment(s)</small>
+</div>
+{% endfor %}
+</body>
+</html>

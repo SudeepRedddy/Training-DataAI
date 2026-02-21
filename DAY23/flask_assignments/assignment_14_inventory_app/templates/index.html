@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Inventory</title></head>
+<body>
+<h1>Inventory Manager</h1>
+<a href="/add">+ Add Product</a>
+<table border="1" cellpadding="8" style="margin-top:15px">
+<tr><th>Product</th><th>Quantity</th><th>Price</th><th>Actions</th></tr>
+{% for p in products %}
+<tr>
+  <td>{{ p.product_name }}</td>
+  <td>{{ p.quantity }}</td>
+  <td>Rs. {{ p.price }}</td>
+  <td>
+    <form method="POST" action="/update_qty/{{ p._id }}" style="display:inline">
+      <input type="number" name="quantity" value="{{ p.quantity }}" style="width:60px">
+      <button type="submit">Update Qty</button>
+    </form>
+    <a href="/delete/{{ p._id }}" onclick="return confirm('Delete?')">Delete</a>
+  </td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><title>Movies</title></head>
+<body>
+<h1>Movie List</h1>
+<a href="/add">+ Add Movie</a>
+<table border="1" cellpadding="8" style="margin-top:15px">
+<tr><th>Title</th><th>Director</th><th>Year</th><th>Genre</th><th>Rating</th><th>Action</th></tr>
+{% for m in movies %}
+<tr>
+  <td>{{ m.title }}</td>
+  <td>{{ m.director }}</td>
+  <td>{{ m.year }}</td>
+  <td>{{ m.genre }}</td>
+  <td>{{ m.rating }}/10</td>
+  <td><a href="/movie/{{ m._id }}">View</a></td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

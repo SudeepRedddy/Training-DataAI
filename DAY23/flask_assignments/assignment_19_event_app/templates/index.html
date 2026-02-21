@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Events</title></head>
+<body>
+<h1>Event Management</h1>
+<a href="/add">+ Add Event</a>
+<table border="1" cellpadding="8" style="margin-top:15px">
+<tr><th>Title</th><th>Date</th><th>Location</th><th>Organizer</th><th>Action</th></tr>
+{% for e in events %}
+<tr>
+  <td>{{ e.title }}</td>
+  <td>{{ e.event_date }}</td>
+  <td>{{ e.location }}</td>
+  <td>{{ e.organizer }}</td>
+  <td><a href="/delete/{{ e._id }}" onclick="return confirm('Delete?')">Delete</a></td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

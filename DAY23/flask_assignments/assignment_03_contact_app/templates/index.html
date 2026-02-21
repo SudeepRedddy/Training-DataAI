@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Contacts</title></head>
+<body>
+<h1>Contact List</h1>
+<a href="/add">+ Add Contact</a>
+<ul>
+{% for c in contacts %}
+<li>
+  <a href="/contact/{{ c._id }}">{{ c.name }}</a> -- {{ c.phone }}
+</li>
+{% endfor %}
+</ul>
+</body>
+</html>

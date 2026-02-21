@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Blog</title></head>
+<body>
+<h1>Blog Posts</h1>
+{% for b in blogs %}
+<div style="border-bottom:1px solid #ccc; padding:10px">
+  <h2><a href="/blog/{{ b._id }}">{{ b.title }}</a></h2>
+  <small>By {{ b.author }}</small>
+</div>
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head><title>Student Management</title></head>
+<body>
+<h1>Student Management System</h1>
+<a href="/add">+ Add Student</a>
+<table border="1" cellpadding="8" style="margin-top:15px">
+<tr><th>Name</th><th>Age</th><th>Course</th><th>Actions</th></tr>
+{% for s in students %}
+<tr>
+  <td>{{ s.name }}</td>
+  <td>{{ s.age }}</td>
+  <td>{{ s.course }}</td>
+  <td>
+    <a href="/edit/{{ s._id }}">Edit</a>
+    <a href="/delete/{{ s._id }}" onclick="return confirm('Delete?')">Delete</a>
+  </td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

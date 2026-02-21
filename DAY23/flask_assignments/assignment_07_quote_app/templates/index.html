@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Quote of the Day</title></head>
+<body>
+<h1>Quote of the Day</h1>
+{% if quote %}
+<blockquote style="font-size:1.4em; font-style:italic">
+  "{{ quote.text }}"
+</blockquote>
+<p>--- {{ quote.author }}</p>
+{% endif %}
+<a href="/">Get Another Quote</a>
+</body>
+</html>

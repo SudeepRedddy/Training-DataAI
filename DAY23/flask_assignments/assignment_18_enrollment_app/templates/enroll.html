@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Enroll Student</title></head>
+<body>
+<h1>Enroll Student</h1>
+<form method="POST">
+  <label>Student:</label>
+  <select name="student_id" required>
+    {% for s in students %}
+    <option value="{{ s._id }}">{{ s.name }}</option>
+    {% endfor %}
+  </select><br><br>
+  <label>Course:</label>
+  <select name="course_id" required>
+    {% for c in courses %}
+    <option value="{{ c._id }}">{{ c.name }}</option>
+    {% endfor %}
+  </select><br><br>
+  <button type="submit">Enroll</button>
+</form>
+<a href="/">View All Enrollments</a>
+</body>
+</html>

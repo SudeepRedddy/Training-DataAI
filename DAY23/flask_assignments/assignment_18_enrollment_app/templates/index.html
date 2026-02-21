@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Enrollments</title></head>
+<body>
+<h1>Course Enrollments</h1>
+<a href="/enroll">+ Enroll Student</a>
+<table border="1" cellpadding="8" style="margin-top:15px">
+<tr><th>Student</th><th>Course</th><th>Enrolled At</th></tr>
+{% for e in enrollments %}
+<tr>
+  <td>{{ e.student_name }}</td>
+  <td>{{ e.course_name }}</td>
+  <td>{{ e.enrolled_at }}</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

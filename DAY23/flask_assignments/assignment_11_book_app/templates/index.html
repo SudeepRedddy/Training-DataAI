@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Book Manager</title></head>
+<body>
+<h1>Book Management</h1>
+<a href="/add">+ Add Book</a>
+<table border="1" cellpadding="8" style="margin-top:15px">
+<tr><th>Title</th><th>Author</th><th>Genre</th><th>Year</th><th>Action</th></tr>
+{% for b in books %}
+<tr>
+  <td>{{ b.title }}</td>
+  <td>{{ b.author }}</td>
+  <td>{{ b.genre }}</td>
+  <td>{{ b.year }}</td>
+  <td><a href="/delete/{{ b._id }}" onclick="return confirm('Delete?')">Delete</a></td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>
